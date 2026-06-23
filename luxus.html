@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luxus & Entspannung — Fiji</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --ocean: #0077b6; --ocean-light: #00b4d8; --palm: #2d6a4f; --white: #ffffff; --dark: #1a1a2e; }
+    body { font-family: 'Lato', sans-serif; color: #333; background: #fff; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: rgba(0,119,182,0.9); backdrop-filter: blur(8px); }
+    nav .logo { color: #fff; font-size: 1.4rem; font-weight: 700; letter-spacing: 2px; text-decoration: none; }
+    nav a { color: #fff; text-decoration: none; margin-left: 1.5rem; font-size: 0.95rem; opacity: 0.9; }
+    nav a:hover { opacity: 1; }
+    .hero { min-height: 60vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1626016940561-c3fb8b86d853?w=1600&q=80') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; padding: 8rem 2rem 4rem; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4rem); color: #fff; font-weight: 800; margin-bottom: 1rem; }
+    .hero p { font-size: 1.2rem; color: rgba(255,255,255,0.9); max-width: 600px; line-height: 1.7; }
+    .content { max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; }
+    .content h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--dark); margin: 2.5rem 0 1rem; }
+    .content p { line-height: 1.8; color: #555; margin-bottom: 1.5rem; font-size: 1.05rem; }
+    .img-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+    .img-grid img { width: 100%; height: 220px; object-fit: cover; border-radius: 12px; }
+    .highlight-box { background: #f3e5f5; border-left: 4px solid #7b1fa2; border-radius: 8px; padding: 1.5rem; margin: 2rem 0; }
+    .highlight-box h3 { font-family: 'Playfair Display', serif; color: #7b1fa2; margin-bottom: 0.5rem; }
+    .back-btn { display: inline-block; background: var(--ocean); color: #fff; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 700; margin-top: 2rem; transition: background 0.2s; }
+    .back-btn:hover { background: var(--ocean-light); }
+    footer { background: var(--dark); color: rgba(255,255,255,0.6); text-align: center; padding: 2rem; font-size: 0.85rem; margin-top: 4rem; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="logo">🌺 FIJI</a>
+    <div>
+      <a href="index.html">Startseite</a>
+      <a href="tauchen.html">Tauchen</a>
+      <a href="straende.html">Strände</a>
+      <a href="kultur.html">Kultur</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div>
+      <h1>Luxus & Entspannung</h1>
+      <p>World-Class Resorts, Overwater-Bungalows und Spa-Behandlungen unter Palmen — Fiji ist Luxus pur.</p>
+    </div>
+  </div>
+
+  <div class="content">
+    <h2>Luxusresorts in Fiji</h2>
+    <p>Fiji beherbergt einige der exklusivsten Resorts der Welt — von privaten Inselresorts mit nur wenigen Villen bis hin zu großen Luxushotels mit allem was das Herz begehrt. Overwater-Bungalows direkt über der Lagune sind das Highlight vieler Fiji-Reisen.</p>
+
+    <div class="img-grid">
+      <img src="https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=600&q=80" alt="Fiji Resort" />
+      <img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?w=600&q=80" alt="Fiji Pool" />
+      <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&q=80" alt="Fiji Spa" />
+    </div>
+
+    <h2>Spa & Wellness</h2>
+    <p>Die Spa-Kultur in Fiji verbindet traditionelle fijianische Heilmethoden mit modernen Wellnessangeboten. Typische Behandlungen umfassen Kokosnussöl-Massagen, Kräuterbäder und Körperpackungen mit lokalen Zutaten wie Kurkuma und Sandelholz — alles inmitten tropischer Natur.</p>
+
+    <div class="highlight-box">
+      <h3>🏆 Top Luxusresorts in Fiji</h3>
+      <p><strong>Laucala Island Resort</strong> — Private Island · Ab 5.000 €/Nacht<br>
+      <strong>Six Senses Fiji</strong> — Mamanuca Islands · Nachhaltiger Luxus<br>
+      <strong>Kokomo Private Island</strong> — Exklusiv · Für nur 21 Gäste<br>
+      <strong>Tokoriki Island Resort</strong> — Adults only · Romantik pur</p>
+    </div>
+
+    <h2>Romantische Erlebnisse</h2>
+    <p>Fiji ist eines der beliebtesten Reiseziele für Flitterwochen weltweit. Private Dinners am Strand, Sonnenuntergangs-Segeltouren, Champagner-Frühstück auf dem Steg — die Möglichkeiten für romantische Momente sind endlos.</p>
+
+    <a href="index.html" class="back-btn">← Zurück zur Startseite</a>
+  </div>
+
+  <footer>© 2026 Fiji Traumreisen · <a href="index.html" style="color:#00b4d8;">Startseite</a></footer>
+</body>
+</html>

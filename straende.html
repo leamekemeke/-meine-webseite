@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Einsame Strände — Fiji</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --ocean: #0077b6; --ocean-light: #00b4d8; --palm: #2d6a4f; --white: #ffffff; --dark: #1a1a2e; }
+    body { font-family: 'Lato', sans-serif; color: #333; background: #fff; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: rgba(0,119,182,0.9); backdrop-filter: blur(8px); }
+    nav .logo { color: #fff; font-size: 1.4rem; font-weight: 700; letter-spacing: 2px; text-decoration: none; }
+    nav a { color: #fff; text-decoration: none; margin-left: 1.5rem; font-size: 0.95rem; opacity: 0.9; }
+    nav a:hover { opacity: 1; }
+    .hero { min-height: 60vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; padding: 8rem 2rem 4rem; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4rem); color: #fff; font-weight: 800; margin-bottom: 1rem; }
+    .hero p { font-size: 1.2rem; color: rgba(255,255,255,0.9); max-width: 600px; line-height: 1.7; }
+    .content { max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; }
+    .content h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--dark); margin: 2.5rem 0 1rem; }
+    .content p { line-height: 1.8; color: #555; margin-bottom: 1.5rem; font-size: 1.05rem; }
+    .img-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+    .img-grid img { width: 100%; height: 220px; object-fit: cover; border-radius: 12px; }
+    .highlight-box { background: #e0f4ff; border-left: 4px solid var(--ocean); border-radius: 8px; padding: 1.5rem; margin: 2rem 0; }
+    .highlight-box h3 { font-family: 'Playfair Display', serif; color: var(--ocean); margin-bottom: 0.5rem; }
+    .back-btn { display: inline-block; background: var(--ocean); color: #fff; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 700; margin-top: 2rem; transition: background 0.2s; }
+    .back-btn:hover { background: var(--ocean-light); }
+    footer { background: var(--dark); color: rgba(255,255,255,0.6); text-align: center; padding: 2rem; font-size: 0.85rem; margin-top: 4rem; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="logo">🌺 FIJI</a>
+    <div>
+      <a href="index.html">Startseite</a>
+      <a href="tauchen.html">Tauchen</a>
+      <a href="kultur.html">Kultur</a>
+      <a href="luxus.html">Luxus</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div>
+      <h1>Einsame Strände in Fiji</h1>
+      <p>Weißer Sand, türkises Wasser und kein Massentourismus — Fiji bietet Strände wie aus einem Traum.</p>
+    </div>
+  </div>
+
+  <div class="content">
+    <h2>Die schönsten Strände Fijis</h2>
+    <p>Mit über 333 Inseln hat Fiji eine schier endlose Auswahl an Stränden — viele davon völlig unberührt und nur per Boot erreichbar. Die meisten Strände bestehen aus feinem weißem oder goldenen Sand und sind von Palmen gesäumt.</p>
+
+    <div class="img-grid">
+      <img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?w=600&q=80" alt="Fiji Strand" />
+      <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&q=80" alt="Fiji Palmen" />
+      <img src="https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=600&q=80" alt="Fiji Lagune" />
+    </div>
+
+    <h2>Top Strände im Überblick</h2>
+    <p><strong>Natadola Beach</strong> auf Viti Levu gilt als einer der schönsten Strände der Südsee — breiter weißer Sand, ruhige Wellen, ideal zum Schwimmen. <strong>Champagne Beach</strong> auf den Yasawa Islands ist bekannt für sein besonders klares Wasser. Auf den Mamanuca Islands finden sich zahlreiche Traumstrände, die per Speedboat oder Fähre erreichbar sind.</p>
+
+    <div class="highlight-box">
+      <h3>🏖️ Die besten Strände</h3>
+      <p><strong>Natadola Beach</strong> — Viti Levu · Ideal zum Schwimmen<br>
+      <strong>Champagne Beach</strong> — Yasawa Islands · Kristallklares Wasser<br>
+      <strong>Matamanoa Island</strong> — Mamanuca · Exklusiver Privatstrand<br>
+      <strong>Sawa-i-Lau</strong> — Yasawa · Versteckte Höhlenstrände</p>
+    </div>
+
+    <h2>Tipps für den perfekten Strandtag</h2>
+    <p>Vermeide die Mittagshitze zwischen 12 und 14 Uhr — die Sonne in Fiji ist intensiv. Sonnencreme mit LSF 50+ ist ein absolutes Muss. Viele der schönsten Strände sind nur per Boot erreichbar — frage im Resort nach täglichen Ausflügen zu unbewohnten Inseln.</p>
+
+    <a href="index.html" class="back-btn">← Zurück zur Startseite</a>
+  </div>
+
+  <footer>© 2026 Fiji Traumreisen · <a href="index.html" style="color:#00b4d8;">Startseite</a></footer>
+</body>
+</html>

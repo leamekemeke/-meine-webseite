@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fiji — Paradies im Pazifik</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ocean: #0077b6;
+      --ocean-light: #00b4d8;
+      --sand: #f4e0b0;
+      --palm: #2d6a4f;
+      --white: #ffffff;
+      --dark: #1a1a2e;
+      --text: #333;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      color: var(--text);
+      background: var(--white);
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(0, 119, 182, 0.85);
+      backdrop-filter: blur(8px);
+    }
+
+    nav .logo {
+      color: var(--white);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-size: 0.95rem;
+      opacity: 0.9;
+      transition: opacity 0.2s;
+    }
+    nav a:hover { opacity: 1; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0077b6 0%, #00b4d8 50%, #2d6a4f 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff18' d='M0,160L60,170.7C120,181,240,203,360,197.3C480,192,600,160,720,149.3C840,139,960,149,1080,165.3C1200,181,1320,203,1380,213.3L1440,224L1440,320L0,320Z'/%3E%3C/svg%3E") bottom/cover no-repeat;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 700px; }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 50px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      color: var(--white);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--white);
+      color: var(--ocean);
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+
+    /* STATS */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      padding: 3rem 2rem;
+      background: var(--sand);
+    }
+
+    .stat { text-align: center; }
+    .stat .number { font-size: 2.2rem; font-weight: 800; color: var(--ocean); }
+    .stat .label { font-size: 0.85rem; color: #666; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* FEATURES */
+    .features {
+      padding: 5rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+    .section-sub {
+      color: #777;
+      margin-bottom: 3rem;
+      font-size: 1.05rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 24px rgba(0,119,182,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-align: left;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,119,182,0.15); }
+
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--dark); }
+    .card p { color: #666; line-height: 1.6; font-size: 0.95rem; }
+
+    /* GALLERY */
+    .gallery-section {
+      background: linear-gradient(180deg, #e0f4ff 0%, var(--white) 100%);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      max-width: 1000px;
+      margin: 2rem auto 0;
+    }
+
+    .gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s;
+    }
+    .gallery-item:hover { transform: scale(1.03); }
+    .gallery-item:hover img { transform: scale(1.05); }
+
+    /* LEAD FORM */
+    .lead-section {
+      background: linear-gradient(135deg, var(--ocean) 0%, var(--palm) 100%);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .lead-section .section-title { color: var(--white); }
+    .lead-section .section-sub { color: rgba(255,255,255,0.8); }
+
+    .lead-form {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2.5rem;
+      max-width: 480px;
+      margin: 0 auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+
+    .form-group { margin-bottom: 1.2rem; text-align: left; }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-group input:focus { border-color: var(--ocean); }
+
+    .btn-submit {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, var(--ocean), var(--ocean-light));
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 0.5rem;
+    }
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,119,182,0.4); }
+
+    .form-note {
+      font-size: 0.75rem;
+      color: #999;
+      margin-top: 0.8rem;
+    }
+
+    #form-success {
+      display: none;
+      background: #d4edda;
+      color: #155724;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--ocean-light); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      nav .links { display: none; }
+      .stats { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">🌺 FIJI</div>
+    <div class="links">
+      <a href="#highlights">Highlights</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">✈️ Reiseziel des Jahres</div>
+      <h1>Willkommen im<br>Paradies Fiji</h1>
+      <p>333 Inseln. Kristallklares Wasser. Lächelnde Menschen.<br>
+         Erlebe das unvergesslichste Abenteuer deines Lebens.</p>
+      <a href="#kontakt" class="btn">Jetzt Traumreise sichern →</a>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="number">333</div>
+      <div class="label">Inseln</div>
+    </div>
+    <div class="stat">
+      <div class="number">28°C</div>
+      <div class="label">Ø Wassertemperatur</div>
+    </div>
+    <div class="stat">
+      <div class="number">3.000+</div>
+      <div class="label">Korallenarten</div>
+    </div>
+    <div class="stat">
+      <div class="number">★ 4.9</div>
+      <div class="label">Bewertung</div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="features" id="highlights">
+    <h2 class="section-title">Was Fiji so besonders macht</h2>
+    <p class="section-sub">Entdecke die schönsten Ecken des Südpazifiks</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🤿</div>
+        <h3>Weltklasse Tauchen</h3>
+        <p>Fiji gilt als die „Weiche Korallen-Hauptstadt der Welt" — ein Unterwasser-Paradies für Taucher und Schnorchler.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏝️</div>
+        <h3>Einsame Strände</h3>
+        <p>Traumstrände mit weißem Sand und türkisem Wasser, fernab von Massentourismus.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌺</div>
+        <h3>Fijianische Kultur</h3>
+        <p>Erlebe die herzliche Gastfreundschaft der Fijis mit traditionellen Zeremonien und echtem „Bula!"-Spirit.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌅</div>
+        <h3>Sonnenuntergänge</h3>
+        <p>Die spektakulärsten Sonnenuntergänge deines Lebens — direkt über dem Pazifischen Ozean.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🍹</div>
+        <h3>Luxus & Entspannung</h3>
+        <p>World-Class Resorts, Infinity-Pools und Spa-Behandlungen in tropischer Umgebung.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🦜</div>
+        <h3>Natur & Wildlife</h3>
+        <p>Tropische Regenwälder, exotische Vögel und eine Artenvielfalt, die begeistert.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSELN -->
+  <section class="features" id="inseln">
+    <h2 class="section-title">Die schönsten Inseln Fijis</h2>
+    <p class="section-sub">Jede Insel hat ihren eigenen Charakter</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🗺️</div>
+        <h3>Viti Levu — die Hauptinsel</h3>
+        <p>Hier liegt die Hauptstadt Suva und der internationale Flughafen Nadi. Idealer Startpunkt für jede Fiji-Reise — mit Märkten, Tempeln und Ausflügen ins Landesinnere.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🐬</div>
+        <h3>Mamanuca Islands</h3>
+        <p>Die bekannteste Inselgruppe Fijis — ideal für Tagesausflüge, Schnorcheln und Surfen. Hier wurden Teile von „Cast Away" und „Survivor" gedreht.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌿</div>
+        <h3>Yasawa Islands</h3>
+        <p>63 km langer Archipel mit atemberaubenden blauen Lagunen, Höhlenschnorcheln und authentischen Dorfbesuchen — noch weitgehend unberührt.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🦈</div>
+        <h3>Beqa Island</h3>
+        <p>Weltbekannt für Haifütterungen mit Bullen- und Tigerhaien — ein unvergessliches Erlebnis für mutige Taucher.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏄</div>
+        <h3>Tavarua Island</h3>
+        <p>Ein Surfer-Paradies mit einer der besten Linkswellen der Welt — „Cloudbreak" gilt als eine der legendärsten Surfwellen überhaupt.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌙</div>
+        <h3>Taveuni — Garten Fijis</h3>
+        <p>Üppiger Regenwald, der Bouma-Nationalpark und die einzigartige Tagua-Palme machen Taveuni zur grünsten und artenreichsten Insel Fijis.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REISEZEIT & PRAKTISCHES -->
+  <section style="background: #f8fbff; padding: 5rem 2rem;">
+    <div style="max-width: 1000px; margin: 0 auto;">
+      <h2 class="section-title" style="text-align:center;">Praktische Reiseinfos</h2>
+      <p class="section-sub" style="text-align:center;">Alles was du vor der Reise wissen solltest</p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem;">
+
+        <div style="background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 4px 20px rgba(0,119,182,0.08);">
+          <h3 style="color: #0077b6; margin-bottom: 1rem;">🗓️ Beste Reisezeit</h3>
+          <p style="color: #555; line-height: 1.7;"><strong>Mai – Oktober</strong> ist die Trockenzeit — weniger Regen, niedrigere Luftfeuchtigkeit, ideale Bedingungen.<br><br>
+          <strong>November – April</strong> ist die Regenzeit mit tropischen Schauern, aber günstigeren Preisen und weniger Touristen.</p>
+        </div>
+
+        <div style="background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 4px 20px rgba(0,119,182,0.08);">
+          <h3 style="color: #0077b6; margin-bottom: 1rem;">✈️ Anreise</h3>
+          <p style="color: #555; line-height: 1.7;">Flugzeit ab Frankfurt ca. <strong>22–26 Stunden</strong> mit Zwischenstopp (Dubai, Singapore, Sydney).<br><br>
+          Direktflüge gibt es ab Los Angeles oder Sydney. Der internationale Flughafen liegt in <strong>Nadi auf Viti Levu</strong>.</p>
+        </div>
+
+        <div style="background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 4px 20px rgba(0,119,182,0.08);">
+          <h3 style="color: #0077b6; margin-bottom: 1rem;">💰 Kosten & Währung</h3>
+          <p style="color: #555; line-height: 1.7;">Währung: <strong>Fiji Dollar (FJD)</strong> — ca. 0,43 € pro FJD.<br><br>
+          Budget-Reise: ab 80 €/Tag · Mittelklasse: 150–250 €/Tag · Luxusresort: 400–1.000+ €/Tag.<br><br>
+          Kreditkarten werden in den meisten Hotels akzeptiert.</p>
+        </div>
+
+        <div style="background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 4px 20px rgba(0,119,182,0.08);">
+          <h3 style="color: #0077b6; margin-bottom: 1rem;">🛂 Einreise & Visum</h3>
+          <p style="color: #555; line-height: 1.7;">Deutsche, Österreicher und Schweizer benötigen <strong>kein Visum</strong> für bis zu 4 Monate.<br><br>
+          Benötigt wird: gültiger Reisepass (mind. 6 Monate gültig), Rückflugticket, Nachweis ausreichender Mittel.</p>
+        </div>
+
+        <div style="background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 4px 20px rgba(0,119,182,0.08);">
+          <h3 style="color: #0077b6; margin-bottom: 1rem;">🌡️ Klima & Gesundheit</h3>
+          <p style="color: #555; line-height: 1.7;">Tropisches Klima: <strong>26–32°C</strong> ganzjährig. Sonnenschutz (LSF 50+) ist ein Muss.<br><br>
+          Impfungen: keine Pflichtimpfungen, Hepatitis A/B empfohlen. Malaria ist in Fiji <strong>kein Thema</strong>.</p>
+        </div>
+
+        <div style="background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 4px 20px rgba(0,119,182,0.08);">
+          <h3 style="color: #0077b6; margin-bottom: 1rem;">🤝 Kultur & Etikette</h3>
+          <p style="color: #555; line-height: 1.7;"><strong>„Bula!"</strong> ist die Begrüßung — immer mit einem Lächeln.<br><br>
+          Beim Besuch von Dörfern: Schultern und Knie bedecken, Hut abnehmen. Kava-Zeremonie annehmen — es ist eine große Ehre!</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- GEHEIMTIPPS -->
+  <section class="features">
+    <h2 class="section-title">Geheimtipps von Insidern</h2>
+    <p class="section-sub">Was die Reiseführer oft verschweigen</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🕳️</div>
+        <h3>Sawa-i-Lau Höhlen</h3>
+        <p>Versteckt in den Yasawa Islands: Eine Kalksteinhöhle mit kristallklarem Wasser, in der man schwimmen kann — ein absolutes Highlight abseits der Touristenpfade.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🍛</div>
+        <h3>Lokales Essen probieren</h3>
+        <p>Kokos-Curry, Lovo (Erdofen-Gericht) und frischer Fisch direkt vom Markt in Suva sind um ein Vielfaches günstiger und authentischer als Hotelangebote.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚤</div>
+        <h3>Lokale Fähren nutzen</h3>
+        <p>Der „Yasawa Flyer" verbindet täglich die Inselkette. Günstiger als Charterboote und du triffst echte Einheimische auf dem Weg.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-section" id="galerie">
+    <h2 class="section-title">Fiji in Bildern</h2>
+    <p class="section-sub">Ein Vorgeschmack auf dein nächstes Abenteuer</p>
+    <div class="gallery">
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?w=600&q=80" alt="Fiji Strand" /></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=600&q=80" alt="Fiji Lagune" /></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1626016940561-c3fb8b86d853?w=600&q=80" alt="Fiji Bungalow" /></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&q=80" alt="Fiji Palmen" /></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="Fiji Traumstrand" /></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=600&q=80" alt="Fiji Sonnenuntergang" /></div>
+    </div>
+  </section>
+
+  <!-- LEAD FORM -->
+  <section class="lead-section" id="kontakt">
+    <h2 class="section-title">Deine Traumreise beginnt hier</h2>
+    <p class="section-sub">Trag dich ein und erhalte kostenlos dein persönliches Fiji-Reiseangebot</p>
+
+    <div class="lead-form">
+      <form id="leadForm">
+        <div class="form-group">
+          <label for="vorname">Vorname</label>
+          <input type="text" id="vorname" name="vorname" placeholder="z. B. Lea" required />
+        </div>
+        <div class="form-group">
+          <label for="email">E-Mail-Adresse</label>
+          <input type="email" id="email" name="email" placeholder="deine@email.de" required />
+        </div>
+        <button type="submit" class="btn-submit">🌺 Kostenloses Angebot anfordern</button>
+        <p class="form-note">Kein Spam. Keine Weitergabe. Jederzeit abmeldbar.</p>
+        <div id="form-success">✅ Danke! Wir melden uns bald bei dir.</div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Fiji Traumreisen · <a href="#">Impressum</a> · <a href="#">Datenschutz</a></p>
+  </footer>
+
+  <script>
+    document.getElementById('leadForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const vorname = document.getElementById('vorname').value;
+      const email = document.getElementById('email').value;
+
+      try {
+        await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ vorname, email })
+        });
+      } catch (_) {}
+
+      document.getElementById('form-success').style.display = 'block';
+      this.reset();
+    });
+  </script>
+
+</body>
+</html>
